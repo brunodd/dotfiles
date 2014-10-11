@@ -2,7 +2,7 @@ configuring vim on new computer:
 
 1. Add colorschemes manually (vundle fails for some reason):
     $ mkdir ~/.vim
-    $ git clone git@github.com:dgvigil/vim-colorschemes.git ~/.vim
+    $ git clone https://github.com/flazz/vim-colorschemes ~/.vim
 
 2. clone vundle:
     $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
