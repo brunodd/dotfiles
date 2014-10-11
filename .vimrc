@@ -5,27 +5,21 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'ervandew/supertab'
-" Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
-Plugin 'KurtPreston/vim-autoformat-rails'
+" Plugin 'KurtPreston/vim-autoformat-rails'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'msanders/snipmate.vim'
-" Plugin 'jvanbaarsen/vim-snippets'
-" Plugin 'jvanbaarsen/vim-testrunner'
-" Plugin 'thoughtbot/vim-rspec'
-" Plugin 'zhaocai/GoldenView.Vim' Checking if working without it makes sense
 Plugin 'kana/vim-fakeclip'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
@@ -40,8 +34,6 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'rking/ag.vim'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'pbrisbin/vim-mkdir'
-" Plugin 'flazz/vim-colorscheme'
-" Plugin 'Raimondi/delimitMate'
 Plugin 'vim-airline'
 Plugin 'tComment'
 
@@ -61,24 +53,12 @@ filetype plugin indent on    " required
 
 runtime macros/matchit.vim
 
-" "" SET BASICS
-" syntax on
-" filetype plugin indent on
-" set ruler
-" " Show absolute linenumber for current line.
-" set nu
-" " Show relative numbers around current line.
-" set rnu
-" " Highlight current line
-" " set cursorline
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC SETS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 syntax on
 filetype plugin indent on
-hi Search guibg=darkgrey ctermbg=darkgrey
+" hi Search guibg=darkgrey ctermbg=darkgrey
 set cursorline
 set visualbell
 set noerrorbells
@@ -95,7 +75,7 @@ set autoindent
 set showmatch
 set nowrap
 set autoread
-set guifont=Monaco:h12
+" set guifont=Monaco:h12
 set smarttab
 set relativenumber
 set number
@@ -119,14 +99,10 @@ set textwidth=80
 set colorcolumn=+1
 set noswapfile
 
-
-" " BEGIN From external .vimrc
 " Set colorscheme
 syntax enable
 set background=dark
 colorscheme molokai
-" colorscheme stingray
-" colorscheme relaxedgreen
 
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
@@ -146,8 +122,6 @@ set modeline " docs say this is default, but not on any Vim I tried!
 set autoread " automatically read file changed outside of Vim
 set autowrite " automatically save before commands like :next and :make
 set splitbelow " open new split windows below the current one
-"set noequalalways " do not resize windows on split/close
-"set shortmess="" " long messages -- does not seem to work
 set showcmd " show partial command in status line
 set tags=~/tags,./tags;,tags; " semicolon searchs up, see :h file-searching
 set suffixes+=.class,.pyc,.o,.so " skip bytecode files for filename completion
@@ -161,8 +135,8 @@ set statusline=%n\ %1*%h%f%*\ %=%<[%3lL,%2cC]\ %2p%%\ 0x%02B%r%m
 set ruler " show ruler, but only shown if laststatus is off
 set rulerformat=%h%r%m%=%f " sane value in case laststatus is off
 
-" set wildmenu " show a menu of matches when doing completion
-" set wildmode=longest:full " make completion work like Bash.
+set wildmenu " show a menu of matches when doing completion
+set wildmode=longest:full " make completion work like Bash.
 set title " shows the current filename and path in the term title.
 set showfulltag " show search pattern when completion matches in a tag file.
 set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " :h 'list
@@ -173,9 +147,9 @@ else
 endif
 if version >= 700
     """ " Highlight the line and column of the cursor.
-    """ set cursorline cursorcolumn
+    set cursorline cursorcolumn
     """ au WinLeave * set nocursorline nocursorcolumn
-    """ au WinEnter * set cursorline cursorcolumn
+    " au WinEnter * set cursorline cursorcolumn
     set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :h 'list
     set numberwidth=4 " width of line numbers
     set nofsync " improves performance -- let OS decide when to flush disk
