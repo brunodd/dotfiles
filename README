@@ -7,13 +7,7 @@ configuring vim on new computer:
 2. clone vundle:
     $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-3. create symlink to .vimrc and .xxx_header.txt files:
-    $ ln -s ~/dotfiles/.vimrc .vimrc
-    $ ln -s ~/dotfiles/.h_header.txt .h_header.txt
-    $ ln -s ~/dotfiles/.py_header.txt .py_header.txt
-    $ ln -s ~/dotfiles/.c_header.txt .c_header.txt
-    $ ln -s ~/dotfiles/.cpp_header.txt .cpp_header.txt
-    $ ln -s ~/dotfiles/.cc_header.txt .cc_header.txt
+3. create symlinks to connect everything by running "create_symlink.sh" script.
 
 3. launch vundle to install all plugins: 
     $ vim +PluginInstall +qall

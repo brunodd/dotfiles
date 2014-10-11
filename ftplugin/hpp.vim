@@ -1,0 +1,1 @@
+inoremap { {<CR>}<up><end>
