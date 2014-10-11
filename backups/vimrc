@@ -1,0 +1,452 @@
+"" VUNDLE ""
+set nocompatible              " be iMproved
+filetype off                  " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle
+" required! 
+" Plugin manager
+Bundle 'gmarik/vundle'
+" Easily navigate directories, files
+Bundle 'scrooloose/nerdtree'
+" Autoinsert certain blocks (for, class, ...)
+Bundle 'msanders/snipmate.vim'
+" Not quite sure...
+" Bundle 'tpope/vim-repeat'
+" Git integration
+" Bundle 'tpope/vim-fugitive'
+" Add/Modify/Remove surround tags, braces, ...
+" Bundle 'tpope/vim-surround'
+" Eye candy for statusbar
+Bundle 'vim-airline'
+" Easily find certain file
+Bundle 'FuzzyFinder'
+" Required for 'FuzzyFinder'
+Bundle 'L9'
+" Not quite sure...
+Bundle 'matchit.zip'
+" Not quite sure...
+Bundle 'MRU'
+" Turn vim into full C/C++ IDE
+" Bundle 'c.vim'
+" Switch between *h and *cpp
+Bundle 'a.vim'
+" No idea
+" Bundle 'scvim'
+" Easily toggle comments
+Bundle 'tComment'
+" Show all functions/classmembers in file
+Bundle 'Tagbar'
+" Colorscheme
+Bundle 'molokai'
+" " Easily find something
+" Bundle 'EasyMotion'
+" 
+" Enable c.vim tools for cmake
+" let  g:C_UseTool_cmake    = 'yes' 
+" Enable c.vim tools for doxygen
+" let  g:C_UseTool_doxygen = 'yes' 
+            
+
+"" SET BASICS
+"execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set ruler
+" Show absolute linenumber for current line.
+set nu
+" Show relative numbers around current line.
+set rnu
+" Highlight current line
+set cursorline
+
+" " BEGIN From external .vimrc
+"" 
+set history=1000 " number of commands and search patterns to save
+set shiftround " round alignment to nearest indent when shifting with < and >
+set t_Co=256 " Set full color range
+set backspace=indent,eol,start " allow bs over EOL, indent, and start of insert
+set nostartofline " if possible, keep cursor in same column for many commands
+set incsearch " incremental search
+set hlsearch " highlight the current search pattern
+" Press enter to clear the current search highlight.
+nnoremap <silent><CR> :nohlsearch<CR><CR>
+set ignorecase " ignore case when searching (see smartcase)
+set smartcase " do not ignore case if pattern has mixed case (see ignorecase)
+set nojoinspaces " use only one space when using join
+set showmatch " show matching brackets by flickering cursor
+set matchtime=1 " show matching brackets quicker than default
+set modeline " docs say this is default, but not on any Vim I tried!
+set autoread " automatically read file changed outside of Vim
+set autowrite " automatically save before commands like :next and :make
+set splitbelow " open new split windows below the current one
+"set noequalalways " do not resize windows on split/close
+"set shortmess="" " long messages -- does not seem to work
+set showcmd " show partial command in status line
+set tags=~/tags,./tags;,tags; " semicolon searchs up, see :h file-searching
+set suffixes+=.class,.pyc,.o,.so " skip bytecode files for filename completion
+set suffixes-=.h " do not skip C header files for filename completion
+set wrap " wrap long lines
+set sidescroll=1 " smooth scroll if set nowrap. for slow terminals set to 0.
+set dir=~/tmp,.,/tmp,/var/tmp " swap file locations
+set virtualedit=block " allow selection anywhere when in Visual block mode
+set laststatus=2 " always show statusline 
+set statusline=%n\ %1*%h%f%*\ %=%<[%3lL,%2cC]\ %2p%%\ 0x%02B%r%m
+set ruler " show ruler, but only shown if laststatus is off
+set rulerformat=%h%r%m%=%f " sane value in case laststatus is off
+
+" set wildmenu " show a menu of matches when doing completion
+" set wildmode=longest:full " make completion work like Bash.
+set title " shows the current filename and path in the term title.
+set showfulltag " show search pattern when completion matches in a tag file.
+set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " :h 'list
+if version >= 630
+    set viminfo=!,%,'20,/100,:100,s100,n~/.viminfo " options for .viminfo
+else
+    set viminfo=!,%,'20,/100,:100,n~/.viminfo " options for .viminfo
+endif
+if version >= 700
+    """ " Highlight the line and column of the cursor.
+    """ set cursorline cursorcolumn
+    """ au WinLeave * set nocursorline nocursorcolumn
+    """ au WinEnter * set cursorline cursorcolumn
+    set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :h 'list
+    set numberwidth=4 " width of line numbers
+    set nofsync " improves performance -- let OS decide when to flush disk
+endif
+if version >= 730
+    set undofile
+endif
+
+" Tab settings for filetypes that should be set even if ftplugin is off.
+set shiftround expandtab tabstop=4 shiftwidth=4 " default
+autocmd FileType c   set shiftround expandtab tabstop=2 shiftwidth=2 " c
+autocmd FileType h   set shiftround expandtab tabstop=2 shiftwidth=2 " h
+autocmd FileType cpp   set shiftround expandtab tabstop=2 shiftwidth=2 " cpp
+autocmd FileType hpp   set shiftround expandtab tabstop=2 shiftwidth=2 " hpp
+autocmd FileType python   set shiftround expandtab tabstop=4 shiftwidth=4 " Python
+autocmd FileType make     set shiftround noexpandtab tabstop=8 shiftwidth=8 " Makefile
+autocmd FileType sh       set shiftround noexpandtab tabstop=8 shiftwidth=8 " shell scripts
+autocmd FileType man      set shiftround noexpandtab tabstop=8 shiftwidth=8 " Man page (also used by psql to edit or view)
+autocmd FileType calendar set shiftround noexpandtab tabstop=8 shiftwidth=8 " calendar(1) reminder service
+
+""""""""""
+"" MAPS ""
+""""""""""
+" Open NERDTree
+nmap NT :NERDTreeToggle<CR>
+" Write and switch to *.h <-> *.cpp
+nmap :wA<CR> :w<CR> :A<CR>
+" Quit and switch to *.h <-> *.cpp
+nmap :qA<CR> :w<CR> :A<CR>
+" Fix typo
+nmap :Q<CR> :q<CR>
+" \cwd changes current working directory
+map <leader>cwd :cd %:p:h<CR>
+" map Q as @q (replay the recording named q). I always use q as my throw-away
+" recording name, so I start recording with "qq" then reply the recording with
+" "Q". I never found a use for interactive ex-mode so I don't miss the
+" original definition of Q.
+nnoremap Q @q
+" get rid of most annoying typo: typing q: when I meant :q.
+" You can still get to cmdline-window easily by typing <Ctrl-F> in
+" command mode, so loosing q: is no loss.
+map q: :q
+" Use display movement with arrow keys for extra precision. Arrow keys will
+" move up and down the next line in the display even if the line is wrapped.
+" This is useful for navigating very long lines that you often find with
+" automatically generated text such as HTML.
+" This is not useful if you turn off wrap.
+imap <up> <C-O>gk
+imap <down> <C-O>gj
+nmap <up> gk
+nmap <down> gj
+vmap <up> gk
+vmap <down> gj
+" Split window selector and stacker.
+" CTRL-J goes down one window and maximizes it; other windows are minimized.
+" CTRL-K goes up one window and maximizes it; other windows are minimized.
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+" This allows easy indentation in visual mode.
+" This keeps the visual selection active after indenting.
+" Normally the visual selection is lost after you indent it.
+vmap > >gv
+vmap < <gv
+" These mappings extend the spirit of * and # for visual searching.
+" Use visual select to select an area, then search for matches by
+" typing * or #. This is very useful for searching for other instances of
+" long, complex strings that may contain regex methacharacters and multiple
+" lines. You don't have to worry about quoting.
+vmap <silent> * y:let @/=substitute(escape(@",'.$*[^\/~'),'\n','\\n','g')<CR>n
+vmap <silent> # y:let @/=substitute(escape(@",'.$*[^\/~'),'\n','\\n','g')<CR>N
+vnoremap <silent> * :<C-U>
+              \let old_reg=getreg('"')<bar>
+              \let old_regmode=getregtype('"')<cr>
+              \gvy/<C-R><C-R>=substitute(substitute(
+              \escape(@", '\\/.*$^~[]' ), "\n$", "", ""),
+              \"\n", '\\_[[:return:]]', "g")<cr><cr>
+              \:call setreg('"', old_reg, old_regmode)<cr>
+vnoremap <silent> # :<C-U>
+              \let old_reg=getreg('"')<bar>
+              \let old_regmode=getregtype('"')<cr>
+              \gvy?<C-R><C-R>=substitute(substitute(
+              \escape(@", '\\/.*$^~[]' ), "\n$", "", ""),
+              \"\n", '\\_[[:return:]]', "g")<cr><cr>
+              \:call setreg('"', old_reg, old_regmode)<cr>
+" This maps \y so that it will yank the visual selection and quote the regex
+" metacharacters. For example, use v to select some text; type \y; then type
+" CTRL-R" to insert the yanked selection with metacharacters escaped.
+vmap <silent> <leader>y y:let @"=substitute(escape(@",'.$*[^\/~'),'\n','\\n','g')<CR>
+" spell check
+" <F2> or \s
+if version >= 700
+    nnoremap <silent><F2> <ESC>:set spell!<CR>
+    nnoremap <silent><leader>s <ESC>:set spell!<CR>
+    "setlocal spell spelllang=en_us
+else " older versions use external aspell
+    nnoremap <silent><F2> <ESC>:!aspell -c "%"<CR>:edit! "%"<CR>
+    nnoremap <silent><leader>s <ESC>:!aspell -c "%"<CR>:edit! "%"<CR>
+endif
+" refresh - redraw window
+" <F5>
+nnoremap <silent><F5> :redraw!<CR>
+
+" This runs the current buffer in an X terminal that disappears after 5 minutes.
+" This needs the env var $TERM set to xterm or some compatible X11 terminal.
+" This does not save first!
+" <F7> or \r
+function RunBufferInTerm ()
+    if &filetype == 'python'
+        silent !$TERM -bg black -fg green -e bash -c "python %; sleep 300" &
+    elseif &filetype == 'sh'
+        silent !$TERM -bg black -fg green -e bash -c "./%; sleep 300" &
+    elseif &filetype == 'php'
+        silent !$TERM -bg black -fg green -e bash -c "php %; sleep 300" &
+    elseif &filetype == 'perl'
+        silent !$TERM -bg black -fg green -e bash -c "perl %; sleep 300" &
+    endif
+    sleep 1
+    redraw!
+endfunction
+nnoremap <silent><F7> :call RunBufferInTerm()<CR>
+nnoremap <silent><leader>r :call RunBufferInTerm()<CR>
+
+" map : \a = yank all lines
+nnoremap <silent><leader>a gg"+yG
+
+" "
+" " folding using the current /search/ pattern -- very handy!
+" "
+" " \z
+" " This folds every line that does not contain the search pattern.
+" " So the end result is that you only see lines with the pattern
+" " see vimtip #282 and vimtip #108
+" "map <silent><leader>z :set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldcolumn=0 foldmethod=expr<CR>
+" nnoremap <silent><leader>z :set foldexpr=(getline(v:lnum)=~@/)?\">1\":\"=\" foldlevel=0 foldcolumn=0 foldmethod=expr foldtext=getline(v:foldstart)<CR>
+" " space toggles the fold state under the cursor.
+" nnoremap <silent><space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<CR>
+" " this folds all classes and functions -- mnemonic: think 'function fold'
+" nnoremap <silent>zff :set foldexpr=UniversalFoldExpression(v:lnum) foldmethod=expr foldlevel=0 foldcolumn=0 foldtext=getline(v:foldstart)<CR><CR>
+" function UniversalFoldExpression(lnum)
+"     if a:lnum == 1
+"         return ">1"
+"     endif
+"     "The first pattern matches C-like function syntax. It is fragile, but
+"     "works more or less bettern than not having it at all.
+"     return (getline(a:lnum)=~"^[a-zA-Z_][a-zA-Z_0-9]*\\s\\+[^(;=,]\\+([^);=]*)\\s*$\\|^\\s*public function\\s\\|^\\s*private function\\s\\|^\\s*function\\s\\|^\\s*class\\s\\|^\\s*def\\s") ? ">1" : "="
+" endfunction
+" " This doesn't work quite right:
+" "if &filetype == 'php'
+" "    if getline(a:lnum) =~ '/\*\*'
+" "        call cursor(a:lnum,1)
+" "        let sp = searchpair ('/\*\*','','\*/')
+" "        call cursor(sp,1)
+" "        let ax = search ('\n*\s*function','cW')
+" "        if ax != 0
+" "            return ">1"
+" "        endif
+" "    endif
+" "    return "="
+" "endif
+" " @/ is the register that holds the last search pattern.
+"
+
+" type \doc to insert PHPdocs
+" see vimtip #1355
+"
+" augroup php_doc
+" au!
+" "autocmd BufReadPost *.php,*.inc source ~/.vim/php-doc.vim
+" autocmd BufReadPost *.php,*.inc nnoremap <leader>doc :call PhpDocSingle()<CR>
+" autocmd BufReadPost *.php,*.inc vnoremap <leader>doc :call PhpDocRange()<CR>
+" augroup END
+
+
+"
+" This sets mouse support for editing XPM images in gvim.
+" see h: xpm
+"
+" function! GetPixel()
+"     let c = getline(".")[col(".") - 1]
+"     echo c
+"     exe "noremap <LeftMouse> <LeftMouse>r".c
+"     exe "noremap <LeftDrag>  <LeftMouse>r".c
+" endfunction
+" autocmd BufReadPre *.xpm noremap <RightMouse> <LeftMouse>:call GetPixel()<CR>
+" autocmd BufReadPre *.xpm set guicursor=n:hor20 " to see the color under cursor
+
+" "
+" " Experimental stuff
+" "
+" 
+" " visually select lines and turn them into an HTML table.
+" vnoremap <silent><leader>ht :s/\(\S\+\)/    <td>\1<\/td><CR>:'<,'>s/^\s*$/<\/tr><tr><CR>'>o</tr></table><ESC>'<O<table><tr><ESC>
+" 
+" function! AppendUnnamedReg()
+"     let old=@"
+"     yank
+"     let @" = old . @"
+" endfun
+" 
+" " online doc search
+" " TODO This needs some work.
+" map <silent><M-d> :call OnlineDoc()<CR>
+" function! OnlineDoc()
+"     if &ft =~ "cpp"
+"         let s:urlTemplate = "http://doc.trolltech.com/4.1/%.html"
+"     elseif &ft =~ "ruby"
+"         let s:urlTemplate = "http://www.ruby-doc.org/core/classes/%.html"
+"     elseif &ft =~ "php"
+"         let s:urlTemplate = "http://www.php.net/%"
+"     elseif &ft =~ "perl"
+"         let s:urlTemplate = "http://perldoc.perl.org/functions/%.html"
+"     elseif &ft =~ "python"
+"         let s:urlTemplate = "http://starship.python.net/crew/theller/pyhelp.cgi?keyword=%"
+"     else
+"         return
+"     endif
+"     let s:browser = "firefox"
+"     let s:wordUnderCursor = expand("<cword>")
+"     let s:url = substitute(s:urlTemplate, "%", s:wordUnderCursor, "g")
+"     let s:cmd = "silent !" . s:browser . " " . s:url
+"     execute  s:cmd
+"     redraw!
+" endfunction
+" 
+" " another online doc search
+" " TODO This also needs some work.
+" " vimtip #1354
+" function! OnlineDoc()
+"     let s:browser = "firefox"
+"     let s:wordUnderCursor = expand("<cword>")
+"     if &ft == "cpp" || &ft == "c" || &ft == "ruby" || &ft == "php" || &ft == "python"
+"         let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor."+lang:".&ft
+"     elseif &ft == "vim"
+"         let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor
+"     else
+"         return
+"     endif
+"     let s:cmd = "silent !" . s:browser . " " . s:url
+"     "echo  s:cmd
+"     execute  s:cmd
+" endfunction
+" " online doc search
+" map <LocalLeader>k :call OnlineDoc()<CR>
+" 
+" " simple calculator based loosely on vimtip #1349
+" " control the precision with this variable
+" let g:MyCalcPresition = 2
+" function MyCalc(str)
+"     return system("echo 'scale=" . g:MyCalcPresition . " ; print " . a:str . "' | bc -l")
+" endfunction
+" " Use \C to replace a math expression by the value of its computation
+" vmap <leader><silent>C :s/.*/\=MyCalc(submatch(0))/<cr>/<BS>
+" vmap <leader><silent>C= :B s/.*/\=submatch(0) . " = " . MyCalc(submatch(0))/<cr>/<BS>
+" 
+" " Python command Calc based on vimtip #1235
+" " does NOT use built-in vim python
+" command! -nargs=+ Calc :r! python -c "from math import *; print <args>"
+" 
+" " allow reading of MS Word doc documents
+" " on Ubuntu you must install the antiword package.
+" autocmd BufReadPre *.doc set ro
+" autocmd BufReadPost *.doc silent %!antiword -f -s -i 1 -m 8859-1 - | fmt -ut --width=78
+" 
+" " allow reading of MS Word doc documents
+" " on Ubuntu install the antiword deb package.
+" autocmd BufReadPre *.doc set ro
+" autocmd BufReadPost *.doc silent %!antiword -i 1 -s -f "%" - |fmt -csw78
+" 
+" jump to the last known position in a file
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+" " Split the 'screen' window if Vim is running inside a screen session.
+" map \s <esc><esc>:silent! if(strlen($STY))<CR>
+"             \silent! screen -X split<CR>:silent! screen -X focus down<CR>:silent! screen -X screen $SHELL -c "screen -X zombie;$SHELL;screen -X remove;screen -X redisplay"<CR>:redraw!<CR><CR>
+"             \endif<CR><CR>
+" 
+" ":let &mouse=(&mouse == "a"?"":"a")<CR>
+
+if filereadable ("~/.vimrc_local")
+    source ~/.vimrc_local
+endif
+
+"Mapping for 'TagBar' plugin
+nmap <F8> :TagbarToggle<CR>
+
+" Automatically add macro-defines in headerfiles.
+function! s:insert_gates()
+    let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+    execute "normal! i#ifndef " . gatename
+    execute "normal! o#define " . gatename . " "
+    execute "normal! Go#endif /* " . gatename . " */"
+    normal! kk
+endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+
+" Set colorscheme
+syntax enable
+set background=dark
+colorscheme molokai
+
+" Autocommands for inserting headers
+"" .c files
+autocmd bufnewfile *.c so ~/.c_header.txt
+autocmd bufnewfile *.c exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.c execute "normal `a"
+" 
+" .py files
+autocmd bufnewfile *.py so ~/.py_header.txt
+autocmd bufnewfile *.py exe "1," . 4 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.py exe "1," . 4 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.py execute "normal ma"
+autocmd Bufwritepre,filewritepre *.py exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.py execute "normal `a"
+" 
+"" .cpp files
+autocmd bufnewfile *.cpp so ~/.cpp_header.txt
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
+autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
+" 
+"" .cc files
+autocmd bufnewfile *.cc so ~/.cc_header.txt
+autocmd bufnewfile *.cc exe "1," . 6 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.cc exe "1," . 6 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.cc execute "normal ma"
+autocmd Bufwritepre,filewritepre *.cc exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.cc execute "normal `a"
+" 
+"" .h files
+autocmd bufnewfile *.h so ~/.h_header.txt
+autocmd bufnewfile *.h exe "1," . 6 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.h execute "normal ma"
+autocmd Bufwritepre,filewritepre *.h exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.h execute "normal `a"
