@@ -104,8 +104,8 @@ set noswapfile
 syntax enable
 set background=dark
 " colorscheme molokai
-" colorscheme calmar256-dark
-colorscheme greenvision
+colorscheme calmar256-dark
+" colorscheme greenvision
 
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
