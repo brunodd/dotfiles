@@ -1,0 +1,4 @@
+[submodule ".vim/bundle"]
+	path = .vim/bundle
+    url = https://github.com/brunodd/dotfiles/.vim/bundle
+    ignore = dirty
