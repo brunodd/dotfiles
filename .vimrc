@@ -36,7 +36,6 @@ Plugin 'christoomey/vim-run-interactive'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'vim-airline'
 Plugin 'tComment'
-Plugin 'flazz/colorschemes'
 
 
 " Vim 2 Gist
