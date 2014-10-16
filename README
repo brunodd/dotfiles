@@ -1,4 +1,7 @@
 configuring vim on new computer:
+1. Clone my dotfiles repository to you home folder (other location will make script fail)
+    $ cd
+    $ git clone gttps://github.com/brunodd/dotfiles
 
 1. Add colorschemes manually (vundle fails for some reason):
     $ mkdir ~/.vim
@@ -7,7 +10,7 @@ configuring vim on new computer:
 2. clone vundle:
     $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-3. create symlinks to connect everything by running "create_symlink.sh" script.
+3. create symlinks + copy files by running "create_symlink.sh" script.
 
 4. launch vundle to install all plugins: 
     $ vim +PluginInstall +qall

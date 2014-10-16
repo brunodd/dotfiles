@@ -36,7 +36,6 @@ Plugin 'christoomey/vim-run-interactive'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'vim-airline'
 Plugin 'tComment'
-Plugin 'flazz/colorschemes'
 
 
 " Vim 2 Gist
@@ -104,8 +103,9 @@ set noswapfile
 syntax enable
 set background=dark
 " colorscheme molokai
-colorscheme calmar256-dark
+" colorscheme calmar256-dark
 " colorscheme greenvision
+colorscheme 256-grayvim
 
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
@@ -133,7 +133,7 @@ set wrap " wrap long lines
 set sidescroll=1 " smooth scroll if set nowrap. for slow terminals set to 0.
 set dir=~/tmp,.,/tmp,/var/tmp " swap file locations
 set virtualedit=block " allow selection anywhere when in Visual block mode
-set laststatus=2 " always show statusline 
+set laststatus=2 " always show statusline
 set statusline=%n\ %1*%h%f%*\ %=%<[%3lL,%2cC]\ %2p%%\ 0x%02B%r%m
 set ruler " show ruler, but only shown if laststatus is off
 set rulerformat=%h%r%m%=%f " sane value in case laststatus is off
@@ -308,7 +308,7 @@ autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : "
 autocmd Bufwritepre,filewritepre *.c execute "normal ma"
 autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.c execute "normal `a"
-" 
+"
 " .py files
 autocmd bufnewfile *.py so ~/.py_header.txt
 autocmd bufnewfile *.py exe "1," . 4 . "g/File Name :.*/s//File Name : " .expand("%")
@@ -316,7 +316,7 @@ autocmd bufnewfile *.py exe "1," . 4 . "g/Creation Date :.*/s//Creation Date : "
 autocmd Bufwritepre,filewritepre *.py execute "normal ma"
 autocmd Bufwritepre,filewritepre *.py exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.py execute "normal `a"
-" 
+"
 "" .cpp files
 autocmd bufnewfile *.cpp so ~/.cpp_header.txt
 autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
@@ -324,7 +324,7 @@ autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date :
 autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
 autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
-" 
+"
 "" .cc files
 autocmd bufnewfile *.cc so ~/.cc_header.txt
 autocmd bufnewfile *.cc exe "1," . 6 . "g/File Name :.*/s//File Name : " .expand("%")
@@ -332,7 +332,7 @@ autocmd bufnewfile *.cc exe "1," . 6 . "g/Creation Date :.*/s//Creation Date : "
 autocmd Bufwritepre,filewritepre *.cc execute "normal ma"
 autocmd Bufwritepre,filewritepre *.cc exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.cc execute "normal `a"
-" 
+"
 "" .h files
 autocmd bufnewfile *.h so ~/.h_header.txt
 autocmd bufnewfile *.h exe "1," . 6 . "g/File Name :.*/s//File Name : " .expand("%")
