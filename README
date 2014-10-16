@@ -9,5 +9,5 @@ configuring vim on new computer:
 
 3. create symlinks to connect everything by running "create_symlink.sh" script.
 
-3. launch vundle to install all plugins: 
+4. launch vundle to install all plugins: 
     $ vim +PluginInstall +qall
