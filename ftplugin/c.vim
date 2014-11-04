@@ -1,1 +1,1 @@
-inoremap { {<CR>}<up><end>
+" inoremap { {<CR>}<up><end>

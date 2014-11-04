@@ -26,6 +26,7 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'ngmy/vim-rubocop'
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'sophacles/vim-processing'
@@ -36,7 +37,14 @@ Plugin 'christoomey/vim-run-interactive'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'vim-airline'
 Plugin 'tComment'
+Plugin 'EasyMotion'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'a.vim'
+Plugin 'Valloric/YouCompleteMe'
 
+" Ask if configuration file for YouCompleteMe project should be loaded: 1 = on 0 = of (default = 1)
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 " Vim 2 Gist
 Plugin 'mattn/webapi-vim'
@@ -105,7 +113,9 @@ set background=dark
 " colorscheme molokai
 " colorscheme calmar256-dark
 " colorscheme greenvision
-colorscheme 256-grayvim
+" colorscheme 256-grayvim
+let g:solarized_termcolors=256
+colorscheme solarized
 
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
@@ -137,6 +147,7 @@ set laststatus=2 " always show statusline
 set statusline=%n\ %1*%h%f%*\ %=%<[%3lL,%2cC]\ %2p%%\ 0x%02B%r%m
 set ruler " show ruler, but only shown if laststatus is off
 set rulerformat=%h%r%m%=%f " sane value in case laststatus is off
+set rnu
 
 set wildmenu " show a menu of matches when doing completion
 set wildmode=longest:full " make completion work like Bash.
