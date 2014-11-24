@@ -92,6 +92,9 @@ set sts=2
 set tabstop=2
 set expandtab
 set laststatus=2
+set foldmethod=syntax
+set foldlevel=0
+" set foldnestmax=1
 set nofoldenable " No code folding :-)
 set tags=./tags;
 set wildignore+=*.jpg,*.psd,*.gif,tmp/**,vendor/**,*.png,Export/**
@@ -115,7 +118,9 @@ set background=dark
 " colorscheme greenvision
 " colorscheme 256-grayvim
 let g:solarized_termcolors=256
+" let g:solarized_underline=0
 colorscheme solarized
+
 
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
