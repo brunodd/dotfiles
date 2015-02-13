@@ -41,6 +41,10 @@ Plugin 'EasyMotion'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'a.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'php.vim'
+Plugin 'smarty.vim'
+Plugin 'spf13/PIV'
+
 
 " Ask if configuration file for YouCompleteMe project should be loaded: 1 = on 0 = of (default = 1)
 let g:ycm_confirm_extra_conf = 0
@@ -72,7 +76,7 @@ set visualbell
 set noerrorbells
 set smartcase
 set ignorecase
-set mouse=a
+" set mouse=a
 set clipboard=unnamed
 set hidden
 set nocompatible
@@ -102,7 +106,6 @@ set wildignore+=tags,Assets/images/**,Assets/sounds/**
 set hlsearch
 set autowrite
 set ttyfast
-set synmaxcol=128
 set ttyscroll=3
 set lazyredraw
 set wrap
@@ -315,47 +318,6 @@ function! s:insert_gates()
     normal! kk
 endfunction
 autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
-
-" Autocommands for inserting headers
-"" .c files
-autocmd bufnewfile *.c so ~/.c_header.txt
-autocmd bufnewfile *.c exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.c exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.c execute "normal ma"
-autocmd Bufwritepre,filewritepre *.c exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.c execute "normal `a"
-"
-" .py files
-autocmd bufnewfile *.py so ~/.py_header.txt
-autocmd bufnewfile *.py exe "1," . 4 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.py exe "1," . 4 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.py execute "normal ma"
-autocmd Bufwritepre,filewritepre *.py exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.py execute "normal `a"
-"
-"" .cpp files
-autocmd bufnewfile *.cpp so ~/.cpp_header.txt
-autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
-autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
-"
-"" .cc files
-autocmd bufnewfile *.cc so ~/.cc_header.txt
-autocmd bufnewfile *.cc exe "1," . 6 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.cc exe "1," . 6 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.cc execute "normal ma"
-autocmd Bufwritepre,filewritepre *.cc exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.cc execute "normal `a"
-"
-"" .h files
-autocmd bufnewfile *.h so ~/.h_header.txt
-autocmd bufnewfile *.h exe "1," . 6 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.h execute "normal ma"
-autocmd Bufwritepre,filewritepre *.h exe "1," . 7 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.h execute "normal `a"
 
 " Read *.pl as prolog (default: filetype = perl) || Check type by typing: ":set filetype"
 autocmd BufNewFile,BufRead ~/*.pl set filetype=prolog
