@@ -20,6 +20,9 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'msanders/snipmate.vim'
+" " Snippets are separated from the engine. Add this if you want them:
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 Plugin 'kana/vim-fakeclip'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
@@ -41,14 +44,20 @@ Plugin 'EasyMotion'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'a.vim'
 Plugin 'Valloric/YouCompleteMe'
+" PHP plugins
 Plugin 'php.vim'
 Plugin 'smarty.vim'
 Plugin 'spf13/PIV'
-
+Plugin 'skammer/vim-css-color'
+Plugin 'rgarver/Kwbd.vim'
+Plugin 'xsbeats/vim-blade'
+Plugin 'jrozner/vim-antlr'
 
 " Ask if configuration file for YouCompleteMe project should be loaded: 1 = on 0 = of (default = 1)
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion=['<c-j>'] " user Ctrl-j to select next completion
+let g:ycm_key_list_previous_completion=['<c-u>']
 
 " Vim 2 Gist
 Plugin 'mattn/webapi-vim'
@@ -64,6 +73,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 runtime macros/matchit.vim
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC SETS
@@ -84,23 +94,26 @@ set history=50
 set ruler
 set showcmd
 set autoindent
+set copyindent
 set showmatch
-set nowrap
 set autoread
-" set guifont=Monaco:h12
+set guifont=Lucida_Console:h14
+set guioptions-=T " Remove top toolbar
+set guioptions-=r " Remove right hand scroll bar
+set go-=L " Remove left hand scrollbar
+set linespace=12
 set smarttab
 set relativenumber
 set number
-set sw=2
-set sts=2
-set tabstop=2
+set sw=4
+set sts=4
+set tabstop=4
 set expandtab
-set laststatus=2
+set laststatus=4
 set foldmethod=syntax
 set foldlevel=0
 " set foldnestmax=1
 set nofoldenable " No code folding :-)
-set tags=./tags;
 set wildignore+=*.jpg,*.psd,*.gif,tmp/**,vendor/**,*.png,Export/**
 set wildignore+=tags,Assets/images/**,Assets/sounds/**
 set hlsearch
@@ -112,15 +125,62 @@ set wrap
 set textwidth=80
 set colorcolumn=+1
 set noswapfile
+set linebreak
+set nolist  " list disables linebreak
+let mapleader = ","
+let g:mapleader = ","
+
+" Move to next line (when lines are wrapped)
+nnoremap j gj
+nnoremap k gk
+
+imap jj <esc>
+
+let g:ctrlp_show_hidden = 1
+
+" Navigate between opened buffers
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-l>l
+
+" Toggle NERDTree
+nmap <C-b> :NERDTreeToggle<Cr>
+
+" Laravel specifics
+" {{{
+" Abbreviations
+abbrev mc !php artisan make:controller
+abbrev mm !php artisan make:model
+
+" Navigation
+nmap <leader>lr :e app/routes.php<cr>
+nmap <leader>lca :e app/config/app.php<cr>81Gf(%0
+nmap <leader>lcd :e app/config/database.php<cr>
+nmap <leader>lc :e composer.json<cr>
+" }}}
+
+" CtrlP Stuff
+map <D-p> :CtrlP<cr>
+map <C-r> :CtrlPBufTag<cr>
+
+set wildignore+=*/vendor/**
+set wildignore+=*/public/forum/**
+set wildignore+=*/skulpt/*
+set wildignore+=*.so,*.sw,*.zip
+
+" Splits
+nmap vs :vsplit<cr>
+nmap sp :split<cr>
 
 " Set colorscheme
 syntax enable
 set background=dark
+let g:solarized_termcolors=256
 " colorscheme molokai
 " colorscheme calmar256-dark
 " colorscheme greenvision
 " colorscheme 256-grayvim
-let g:solarized_termcolors=256
 " let g:solarized_underline=0
 colorscheme solarized
 
@@ -148,7 +208,6 @@ set tags=~/tags,./tags;,tags; " semicolon searchs up, see :h file-searching
 set suffixes+=.class,.pyc,.o,.so " skip bytecode files for filename completion
 set suffixes-=.h " do not skip C header files for filename completion
 set wrap " wrap long lines
-set sidescroll=1 " smooth scroll if set nowrap. for slow terminals set to 0.
 set dir=~/tmp,.,/tmp,/var/tmp " swap file locations
 set virtualedit=block " allow selection anywhere when in Visual block mode
 set laststatus=2 " always show statusline
@@ -156,12 +215,14 @@ set statusline=%n\ %1*%h%f%*\ %=%<[%3lL,%2cC]\ %2p%%\ 0x%02B%r%m
 set ruler " show ruler, but only shown if laststatus is off
 set rulerformat=%h%r%m%=%f " sane value in case laststatus is off
 set rnu
+set formatoptions+=l
+set lbr
 
 set wildmenu " show a menu of matches when doing completion
 set wildmode=longest:full " make completion work like Bash.
 set title " shows the current filename and path in the term title.
 set showfulltag " show search pattern when completion matches in a tag file.
-set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " :h 'list
+" set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " :h 'list
 if version >= 630
     set viminfo=!,%,'20,/100,:100,s100,n~/.viminfo " options for .viminfo
 else
@@ -172,7 +233,7 @@ if version >= 700
     set cursorline cursorcolumn
     """ au WinLeave * set nocursorline nocursorcolumn
     " au WinEnter * set cursorline cursorcolumn
-    set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :h 'list
+    " set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :h 'list
     set numberwidth=4 " width of line numbers
     set nofsync " improves performance -- let OS decide when to flush disk
 endif
@@ -183,6 +244,11 @@ endif
 " Tab settings for filetypes that should be set even if ftplugin is off.
 set shiftround expandtab tabstop=4 shiftwidth=4 " default
 set tw=200
+
+au BufRead,BufNewFile *.g4 set syntax=antlr4
+autocmd BufNewFile,BufRead *.pl set filetype=prolog
+autocmd BufNewFile,BufRead *.php set filetype=php
+autocmd BufNewFile,BufRead *.blade.php set filetype=php
 autocmd FileType c   set shiftround expandtab tabstop=2 shiftwidth=2 " c
 autocmd FileType h   set shiftround expandtab tabstop=2 shiftwidth=2 " h
 autocmd FileType cpp   set shiftround expandtab tabstop=2 shiftwidth=2 " cpp
@@ -193,7 +259,8 @@ autocmd FileType sh       set shiftround noexpandtab tabstop=8 shiftwidth=8 " sh
 autocmd FileType man      set shiftround noexpandtab tabstop=8 shiftwidth=8 " Man page (also used by psql to edit or view)
 autocmd FileType calendar set shiftround noexpandtab tabstop=8 shiftwidth=8 " calendar(1) reminder service
 autocmd FileType dot set shiftround expandtab tabstop=4 shiftwidth=4 " dot
-
+autocmd FileType php set shiftround expandtab tabstop=4 shiftwidth=4 " php
+autocmd FileType prolog set shiftround expandtab tabstop=4 shiftwidth=4 " prolog
 """"""""""
 "" MAPS ""
 """"""""""
@@ -319,6 +386,9 @@ function! s:insert_gates()
 endfunction
 autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 
-" Read *.pl as prolog (default: filetype = perl) || Check type by typing: ":set filetype"
-autocmd BufNewFile,BufRead ~/*.pl set filetype=prolog
-
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+" noremap h <NOP>
+" noremap l <NOP>
