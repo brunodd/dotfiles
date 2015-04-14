@@ -56,8 +56,8 @@ Plugin 'jrozner/vim-antlr'
 " Ask if configuration file for YouCompleteMe project should be loaded: 1 = on 0 = of (default = 1)
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_key_list_select_completion=['<c-j>'] " user Ctrl-j to select next completion
-let g:ycm_key_list_previous_completion=['<c-u>']
+let g:ycm_key_list_select_completion=[] " user Ctrl-n to select next completion
+let g:ycm_key_list_previous_completion=[] " user Ctrl-p to select next completion
 
 " Vim 2 Gist
 Plugin 'mattn/webapi-vim'
