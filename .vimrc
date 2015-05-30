@@ -1,3 +1,5 @@
+" vim:fdm=marker
+"Vundle {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -5,67 +7,46 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-" Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-rake'
-" Plugin 'KurtPreston/vim-autoformat-rails'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Yggdroot/indentLine'
 Plugin 'msanders/snipmate.vim'
-" " Snippets are separated from the engine. Add this if you want them:
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
 Plugin 'kana/vim-fakeclip'
-Plugin 'rizzatti/funcoo.vim'
-Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'ngmy/vim-rubocop'
+Plugin 'gerw/vim-latex-suite'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'sophacles/vim-processing'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'rking/ag.vim'
 Plugin 'christoomey/vim-run-interactive'
-Plugin 'pbrisbin/vim-mkdir'
 Plugin 'vim-airline'
 Plugin 'tComment'
 Plugin 'EasyMotion'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'a.vim'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " PHP plugins
 Plugin 'php.vim'
 Plugin 'smarty.vim'
 Plugin 'spf13/PIV'
 Plugin 'skammer/vim-css-color'
-Plugin 'rgarver/Kwbd.vim'
+" Plugin 'rgarver/Kwbd.vim'
 Plugin 'xsbeats/vim-blade'
 Plugin 'jrozner/vim-antlr'
 
-" Ask if configuration file for YouCompleteMe project should be loaded: 1 = on 0 = of (default = 1)
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_key_list_select_completion=[] " user Ctrl-n to select next completion
-let g:ycm_key_list_previous_completion=[] " user Ctrl-p to select next completion
+" " Ask if configuration file for YouCompleteMe project should be loaded: 1 = on 0 = of (default = 1)
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_key_list_select_completion=[] " user Ctrl-n to select next completion
+" let g:ycm_key_list_previous_completion=[] " user Ctrl-p to select next completion
+
+" Vim
+let g:indentLine_color_term = 239
+"GVim
+let g:indentLine_color_gui = '#A4E57E'
 
 " Vim 2 Gist
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-
-" Rubyblock depends on: [matchit, textobj-user]
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'kana/vim-textobj-user'
 Plugin 'vim-scripts/matchit.zip'
 
 " All of your Plugins must be added before the following line
@@ -74,29 +55,23 @@ filetype plugin indent on    " required
 
 runtime macros/matchit.vim
 
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC SETS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
-filetype plugin indent on
 hi Search guibg=darkgrey ctermbg=darkgrey
 set cursorline
 set visualbell
 set noerrorbells
-set smartcase
-set ignorecase
-" set mouse=a
+set mouse=a     " c == no mouse options, a == enable mouse options.
 set clipboard=unnamed
 set hidden
 set nocompatible
-set history=50
-set ruler
-set showcmd
 set autoindent
 set copyindent
 set showmatch
-set autoread
 set guifont=Lucida_Console:h14
 set guioptions-=T " Remove top toolbar
 set guioptions-=r " Remove right hand scroll bar
@@ -111,18 +86,14 @@ set tabstop=4
 set expandtab
 set laststatus=4
 set foldmethod=syntax
-set foldlevel=0
-" set foldnestmax=1
-set nofoldenable " No code folding :-)
 set wildignore+=*.jpg,*.psd,*.gif,tmp/**,vendor/**,*.png,Export/**
 set wildignore+=tags,Assets/images/**,Assets/sounds/**
 set hlsearch
-set autowrite
 set ttyfast
 set ttyscroll=3
 set lazyredraw
 set wrap
-set textwidth=80
+" set textwidth=40
 set colorcolumn=+1
 set noswapfile
 set linebreak
@@ -177,11 +148,6 @@ nmap sp :split<cr>
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
-" colorscheme molokai
-" colorscheme calmar256-dark
-" colorscheme greenvision
-" colorscheme 256-grayvim
-" let g:solarized_underline=0
 colorscheme solarized
 
 
@@ -241,14 +207,10 @@ if version >= 730
     set undofile
 endif
 
-" Tab settings for filetypes that should be set even if ftplugin is off.
-set shiftround expandtab tabstop=4 shiftwidth=4 " default
-set tw=200
-
 au BufRead,BufNewFile *.g4 set syntax=antlr4
 autocmd BufNewFile,BufRead *.pl set filetype=prolog
 autocmd BufNewFile,BufRead *.php set filetype=php
-autocmd BufNewFile,BufRead *.blade.php set filetype=php
+autocmd BufNewFile,BufRead *.blade.php set filetype=blade
 autocmd FileType c   set shiftround expandtab tabstop=2 shiftwidth=2 " c
 autocmd FileType h   set shiftround expandtab tabstop=2 shiftwidth=2 " h
 autocmd FileType cpp   set shiftround expandtab tabstop=2 shiftwidth=2 " cpp
@@ -261,11 +223,16 @@ autocmd FileType calendar set shiftround noexpandtab tabstop=8 shiftwidth=8 " ca
 autocmd FileType dot set shiftround expandtab tabstop=4 shiftwidth=4 " dot
 autocmd FileType php set shiftround expandtab tabstop=4 shiftwidth=4 " php
 autocmd FileType prolog set shiftround expandtab tabstop=4 shiftwidth=4 " prolog
+autocmd FileType java set shiftround noexpandtab tabstop=2 shiftwidth=2 " java
+
+" Define comment for java files.
+call tcomment#DefineType('java', '// %s')
+call tcomment#DefineType('blade', '{{-- %s --}}')
+
+
 """"""""""
 "" MAPS ""
 """"""""""
-" Open NERDTree
-nmap NT :NERDTreeToggle<CR>
 " Write and switch to *.h <-> *.cpp
 nmap :wA<CR> :w<CR> :A<CR>
 " Quit and switch to *.h <-> *.cpp
@@ -294,11 +261,13 @@ nmap <up> gk
 nmap <down> gj
 vmap <up> gk
 vmap <down> gj
-" Split window selector and stacker.
+" Split window seletor and stacker.
 " CTRL-J goes down one window and maximizes it; other windows are minimized.
 " CTRL-K goes up one window and maximizes it; other windows are minimized.
+map <C-H> <C-W>h<C-W>_
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
 " This allows easy indentation in visual mode.
 " This keeps the visual selection active after indenting.
 " Normally the visual selection is lost after you indent it.
@@ -373,9 +342,9 @@ if filereadable ("~/.vimrc_local")
     source ~/.vimrc_local
 endif
 
-"Mapping for 'TagBar' plugin
-nmap <F8> :TagbarToggle<CR>
+" Filetype specifics {{{
 
+" C-family {{{
 " Automatically add macro-defines in headerfiles.
 function! s:insert_gates()
     let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
@@ -385,10 +354,9 @@ function! s:insert_gates()
     normal! kk
 endfunction
 autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+" }}}
+" }}}
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-" noremap h <NOP>
-" noremap l <NOP>
+" Fix mapping overlaps {{{
+nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward
+" }}}
