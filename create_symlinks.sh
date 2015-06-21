@@ -1,6 +1,15 @@
-#!
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/ftplugin ~/.vim/ftplugin
+#!/bin/bash
+if [[ ! -e ~/.vimrc ]]
+then
+	ln -s ~/dotfiles/.vimrc ~/.vimrc
+fi
 
-# Copy extra / adjusted colorschemes
-cp ~/dotfiles/colors/* ~/.vim/colors/.
+if [[ ! -e ~/.vim/ftplugin/ ]]
+then
+	ln -s ~/dotfiles/ftplugin ~/.vim/ftplugin
+fi
+
+if [[ ! -e ~/.vim/colors/ ]]
+then
+	ln -s ~/dotfiles/colors ~/.vim/colors
+fi
