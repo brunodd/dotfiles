@@ -12,6 +12,14 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Yggdroot/indentLine'
+" indentLine settings {{{
+" Vim
+let g:indentLine_color_term = 239
+"GVim
+let g:indentLine_color_gui = '#A4E57E'
+" set list lcs=tab:\|\ 
+set list lcs=tab:¦\ 
+" }}}
 Plugin 'msanders/snipmate.vim'
 Plugin 'kana/vim-fakeclip'
 Plugin 'scrooloose/nerdtree'
@@ -90,9 +98,10 @@ set ttyfast
 set ttyscroll=3
 set lazyredraw
 set wrap " wrap long lines
-set linebreak
+" set linebreak
 set textwidth=80
-set colorcolumn=+1
+set cc=+1 " highlight one column after 'textwidth'
+
 set noswapfile
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
@@ -148,17 +157,14 @@ nmap vs :vsplit<cr>
 nmap sp :split<cr>
 " }}}
 " Color settings {{{
-" Indentation colors {{{
-" Vim
-let g:indentLine_color_term = 239
-"GVim
-let g:indentLine_color_gui = '#A4E57E'
-" }}}
 " Colorscheme {{{
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+" colorscheme adam
+" colorscheme greenvision
+" colorscheme solarized
+colorscheme solarized_brunodd
 " }}}
 " }}}
 " Handy little things {{{
