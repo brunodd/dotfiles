@@ -19,3 +19,9 @@ then
 else
 	ln -s ~/dotfiles/colors ~/.vim/colors
 fi
+if [[ -e ~/.bash_profile ]]
+then
+	echo "~/.bash_profile exists. It was ignored."
+else
+	ln -s ~/dotfiles/.bash_profile ~/.bash_profile
+fi

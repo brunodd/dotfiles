@@ -29,6 +29,10 @@ nmap <C-b> :NERDTreeToggle<Cr>
 Plugin 'gerw/vim-latex-suite'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+" vim-markdown settings {{{
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_math=1
+" }}}
 Plugin 'kien/ctrlp.vim'
 " CtrlP settings {{{
 let g:ctrlp_show_hidden = 1
@@ -46,6 +50,7 @@ Plugin 'a.vim'
 Plugin 'php.vim'
 Plugin 'smarty.vim'
 Plugin 'spf13/PIV'
+Plugin 'vim-scripts/click.vim'
 " Plugin 'skammer/vim-css-color'
 Plugin 'xsbeats/vim-blade'
 Plugin 'jrozner/vim-antlr'
@@ -230,6 +235,9 @@ autocmd FileType dot set shiftround expandtab tabstop=4 shiftwidth=4 " dot
 " Prolog {{{
 autocmd BufNewFile,BufRead *.pl set filetype=prolog
 autocmd FileType prolog set shiftround expandtab tabstop=4 shiftwidth=4 " prolog
+" }}}
+" Click {{{
+autocmd BufNewFile,BufRead *.click set filetype=click
 " }}}
 " }}}
 " Advanced scripts {{{
