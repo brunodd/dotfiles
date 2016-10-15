@@ -165,11 +165,11 @@ nmap sp :split<cr>
 " Colorscheme {{{
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 " colorscheme adam
 " colorscheme greenvision
-" colorscheme solarized
-colorscheme solarized_brunodd
+colorscheme solarized
+" colorscheme solarized_brunodd
 " }}}
 " }}}
 " Handy little things {{{

@@ -25,3 +25,9 @@ then
 else
 	ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 fi
+if [[ -e ~/.zshrc ]]
+then
+	echo "~/.zshrc exists. It was ignored."
+else
+	ln -s ~/dotfiles/.zshrc ~/.zshrc
+fi
