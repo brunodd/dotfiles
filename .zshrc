@@ -1,24 +1,20 @@
-# .zshrc
-# Initialize
-autoload -Uz compinit promptinit
-autoload -Uz colors && colors
+#!/bin/zsh
+
+# completion
+autoload -U compinit
 compinit
+
+# correction
+setopt correctall
+
+# prompt
+autoload -U promptinit
 promptinit
-
-# Basic mappings
-alias k='tree'
-alias ltr='ls -ltr'
-alias r='screen -D -R'
-alias l='ls -lh'
-alias ll='ls -la'
-alias c='clear'
-
-export TERM=rxvt
 prompt adam2
 
-# fix colors
-export CLICOLOR=1
-# export LSCOLORS=ExFxBxDxCxegedabagacad
+# Enable aliases
+. ~/.zsh/.aliases
 
-# Vi mode
+# Enable vim commands in zsh.
 bindkey -v
+export KEYTIMEOUT=1
