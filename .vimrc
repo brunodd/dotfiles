@@ -242,6 +242,9 @@ autocmd FileType prolog set shiftround expandtab tabstop=4 shiftwidth=4 " prolog
 " Click {{{
 autocmd BufNewFile,BufRead *.click set filetype=click
 " }}}
+" Latex {{{
+autocmd BufNewFile,BufRead *.tex set filetype=tex
+" }}}
 " }}}
 " Advanced scripts {{{
 " Improve viminfo {{{
