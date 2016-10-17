@@ -162,6 +162,7 @@ map <C-L> <C-W>l<C-W>
 
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
+nmap r :redo<cr>
 " }}}
 " Color settings {{{
 " Colorscheme {{{
