@@ -167,7 +167,7 @@ nmap sp :split<cr>
 " Colorscheme {{{
 syntax enable
 set background=dark
-" let g:solarized_termcolors=256
+let g:solarized_termcolors=256 " Fix weird colors in non-gui vim
 " colorscheme adam
 " colorscheme greenvision
 colorscheme solarized
