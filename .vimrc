@@ -107,7 +107,9 @@ set wrap " wrap long lines
 set textwidth=80
 set cc=+1 " highlight one column after 'textwidth'
 
-set noswapfile
+set nobackup    " Don't store backup files
+set swapfile
+set dir=~/vim_tmp
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
 set t_Co=256 " Set full color range

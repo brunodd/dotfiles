@@ -18,3 +18,8 @@ prompt adam2
 # Enable vim commands in zsh.
 bindkey -v
 export KEYTIMEOUT=1
+
+# fix colors
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
