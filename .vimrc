@@ -109,7 +109,7 @@ set cc=+1 " highlight one column after 'textwidth'
 
 " set nobackup    " Don't store backup files
 set backupdir=~/.vim/.backup//
-set swapfile
+set noswapfile
 set history=1000 " number of commands and search patterns to save
 set shiftround " round alignment to nearest indent when shifting with < and >
 set t_Co=256 " Set full color range
@@ -132,7 +132,7 @@ set showcmd " show partial command in status line
 set tags=~/tags,./tags;,tags; " semicolon searchs up, see :h file-searching
 set suffixes+=.class,.pyc,.o,.so " skip bytecode files for filename completion
 set suffixes-=.h " do not skip C header files for filename completion
-set directory=~/.vim/.tmp//     " swap file locations 
+" set directory=~/.vim/.tmp//     " swap file locations 
 set virtualedit=block " allow selection anywhere when in Visual block mode
 set laststatus=2 " always show statusline
 set statusline=%n\ %1*%h%f%*\ %=%<[%3lL,%2cC]\ %2p%%\ 0x%02B%r%m
