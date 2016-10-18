@@ -155,12 +155,6 @@ nnoremap j gj
 nnoremap k gk
 " }}}
 " Splits {{{
-" " Navigate between opened buffers, horizontal buffer are maximized when
-" " switching
-" map <C-H> <C-W>h<C-W>
-" map <C-J> <C-W>j<C-W>_
-" map <C-K> <C-W>k<C-W>_
-" map <C-L> <C-W>l<C-W>
 " key bindings for quickly moving between windows
 " h left, l right, k up, j down
 noremap <leader>h <c-w>h
@@ -170,7 +164,6 @@ noremap <leader>j <c-w>j
 
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
-nmap r :redo<cr>
 " }}}
 " Color settings {{{
 " Colorscheme {{{
@@ -310,6 +303,8 @@ endif
 " }}}
 " }}}
 " General Remaps {{{
+" Enable easy Redo
+nmap r :redo<cr>
 " Typos {{{
 nmap :Q<CR> :q<CR>
 " map Q as @q (replay the recording named q).
@@ -326,19 +321,6 @@ vmap < <gv
 nnoremap <silent><leader>a gg"+yG
 " }}}
 " }}}
-" Filetype specifics {{{
-" C-family {{{
-" Automatically add macro-defines in headerfiles.
-function! s:insert_gates()
-    let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-    execute "normal! i#ifndef " . gatename
-    execute "normal! o#define " . gatename . " "
-    execute "normal! Go#endif /* " . gatename . " */"
-    normal! kk
-endfunction
-autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
-" }}}
-" }}}
 " Fix mapping overlaps {{{
 nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward
 nnoremap <SID>I_won't_ever_type_this_either <C-W>\=
@@ -348,70 +330,4 @@ nnoremap <SID>I_won't_ever_type_this_either <C-W>\=
 " refresh - redraw window
 " <F5>
 nnoremap <silent><F5> :redraw!<CR>
-" }}}
-" Greek {{{
-map! <C-v>GA Γ
-map! <C-v>DE Δ
-map! <C-v>TH Θ
-map! <C-v>LA Λ
-map! <C-v>XI Ξ
-map! <C-v>PI Π
-map! <C-v>SI Σ
-map! <C-v>PH Φ
-map! <C-v>PS Ψ
-map! <C-v>OM Ω
-map! <C-v>al α
-map! <C-v>be β
-map! <C-v>ga γ
-map! <C-v>de δ
-map! <C-v>ep ε
-map! <C-v>ze ζ
-map! <C-v>et η
-map! <C-v>th θ
-map! <C-v>io ι
-map! <C-v>ka κ
-map! <C-v>la λ
-map! <C-v>mu μ
-map! <C-v>xi ξ
-map! <C-v>pi π
-map! <C-v>rh ρ
-map! <C-v>si σ
-map! <C-v>ta τ
-map! <C-v>ps ψ
-map! <C-v>om ω
-map! <C-v>ph ϕ
-" }}}
-" Math {{{
-map! <C-v>ll →
-map! <C-v>hh ⇌
-map! <C-v>kk ↑
-map! <C-v>jj ↓
-map! <C-v>= ∝
-map! <C-v>~ ≈
-map! <C-v>!= ≠
-map! <C-v>!> ⇸
-map! <C-v>~> ↝
-map! <C-v>>= ≥
-map! <C-v><= ≤
-map! <C-v>0  °
-map! <C-v>ce ¢
-map! <C-v>*  •
-map! <C-v>co ⌘
-" }}}
-" Subscript and Superscript {{{
-inoremap <leader>1 ~1~
-inoremap <leader>2 ~2~
-inoremap <leader>3 ~3~
-inoremap <leader>4 ~4~
-inoremap <leader>5 ~5~
-inoremap <leader>6 ~6~
-inoremap <leader>7 ~7~
-inoremap <leader>8 ~8~
-inoremap <leader>9 ~9~
-inoremap <leader>== ^+^
-inoremap <leader>=2 ^2+^
-inoremap <leader>=3 ^3+^
-inoremap <leader>-- ^-^
-inoremap <leader>-2 ^2-^
-inoremap <leader>-3 ^3-^
 " }}}
