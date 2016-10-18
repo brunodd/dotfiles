@@ -146,9 +146,6 @@ set title " shows the current filename and path in the term title.
 set showfulltag " show search pattern when completion matches in a tag file.
 
 " Define new leader
-" let mapleader = ","
-" let g:mapleader = ","
-" our <leader> will be the space key
 let mapleader=" "
 " Move to next line (when lines are wrapped)
 nnoremap j gj
@@ -205,12 +202,6 @@ autocmd FileType php set shiftround expandtab tabstop=4 shiftwidth=4 " php
 " Abbreviations
 abbrev mc !php artisan make:controller
 abbrev mm !php artisan make:model
-
-" Navigation
-nmap <leader>lr :e app/routes.php<cr>
-nmap <leader>lca :e app/config/app.php<cr>81Gf(%0
-nmap <leader>lcd :e app/config/database.php<cr>
-nmap <leader>lc :e composer.json<cr>
 
 " Blade specifics
 autocmd BufNewFile,BufRead *.blade.php set filetype=blade
@@ -290,18 +281,6 @@ vnoremap <silent> # :<C-U>
               \"\n", '\\_[[:return:]]', "g")<cr><cr>
               \:call setreg('"', old_reg, old_regmode)<cr>
 " }}}
-" Spell checker {{{
-" <F2> or \s
-if version >= 700
-    nnoremap <silent><F2> <ESC>:set spell!<CR>
-    nnoremap <silent><leader>s <ESC>:set spell!<CR>
-    "setlocal spell spelllang=en_us
-else " older versions use external aspell
-    nnoremap <silent><F2> <ESC>:!aspell -c "%"<CR>:edit! "%"<CR>
-    nnoremap <silent><leader>s <ESC>:!aspell -c "%"<CR>:edit! "%"<CR>
-endif
-" }}}
-" }}}
 " General Remaps {{{
 " Enable easy Redo
 nmap r :redo<cr>
@@ -331,3 +310,4 @@ nnoremap <SID>I_won't_ever_type_this_either <C-W>\=
 " <F5>
 nnoremap <silent><F5> :redraw!<CR>
 " }}}
+
