@@ -146,19 +146,27 @@ set title " shows the current filename and path in the term title.
 set showfulltag " show search pattern when completion matches in a tag file.
 
 " Define new leader
-let mapleader = ","
-let g:mapleader = ","
+" let mapleader = ","
+" let g:mapleader = ","
+" our <leader> will be the space key
+let mapleader=" "
 " Move to next line (when lines are wrapped)
 nnoremap j gj
 nnoremap k gk
 " }}}
 " Splits {{{
-" Navigate between opened buffers, horizontal buffer are maximized when
-" switching
-map <C-H> <C-W>h<C-W>
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>
+" " Navigate between opened buffers, horizontal buffer are maximized when
+" " switching
+" map <C-H> <C-W>h<C-W>
+" map <C-J> <C-W>j<C-W>_
+" map <C-K> <C-W>k<C-W>_
+" map <C-L> <C-W>l<C-W>
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+noremap <leader>h <c-w>h
+noremap <leader>l <c-w>l
+noremap <leader>k <c-w>k
+noremap <leader>j <c-w>j
 
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
