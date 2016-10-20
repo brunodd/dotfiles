@@ -23,3 +23,5 @@ export KEYTIMEOUT=1
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# Set path
+export PATH=/usr/local/bin:$PATH
