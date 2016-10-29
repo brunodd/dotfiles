@@ -124,18 +124,6 @@ Plugin 'Valloric/MatchTagAlways'
   let g:mta_use_matchparen_group = 0
 " }}}
 Plugin 'Valloric/python-indent'
-Plugin 'greyblake/vim-preview'
-" vim-preview settings {{{
-  " This forces vim-preview to use the default browser on linux; it already uses
-  " 'open' on Mac.
-  if has("unix")
-    let g:PreviewBrowsers = "xdg-open"
-  endif
-
-  let g:PreviewMarkdownFences = 1
-
-  " Use :Preview command to open in browser!
-" }}}
 Plugin 'helino/vim-json'
 " much potential, to be studied
 Plugin 'matchit.zip'
@@ -238,12 +226,12 @@ set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set nobackup            " no backup~ files.
  set noswapfile         " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 
-set tabstop=2           " number of spaces a tab counts for
-set shiftwidth=2        " spaces for autoindents
-set softtabstop=2
+set tabstop=4           " number of spaces a tab counts for
+set shiftwidth=4        " spaces for autoindents
+set softtabstop=4
 set shiftround          " makes indenting a multiple of shiftwidth
 set expandtab           " turn a tab into spaces
-set laststatus=2        " the statusline is now always shown
+set laststatus=4        " the statusline is now always shown
 set noshowmode          " don't show the mode ("-- INSERT --") at the bottom
 
 set hidden              " allows making buffers hidden even with unsaved changes
@@ -409,4 +397,7 @@ nnoremap :cw<CR> :s/  //<CR>
 " Define latex file as tex-type
 au BufRead,BufNewFile *.tex set filetype=tex
 autocmd FileType tex let b:did_indent = 1
+
+" Define markdown
+autocmd BufNewFile,BufRead \*.{md,mdwn,mkd,mkdn,mark\*} set filetype=markdown
 " }}}
