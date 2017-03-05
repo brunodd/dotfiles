@@ -9,11 +9,10 @@
     git clone https://github.com/brunodd/dotfiles
     ~~~
 
-2. Add colorschemes manually (vundle fails for some reason):
+2. If needed create a .vim/ directory in your home directory
 
     ~~~sh
     mkdir ~/.vim
-    git clone https://github.com/flazz/vim-colorschemes ~/.vim
     ~~~
 
 3. clone vundle:
@@ -22,15 +21,14 @@
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ~~~
 
-4. create symlinks + copy files by running "create_symlink.sh" script. If none
-   exists, you get a free .bash_profile as a bonus.
+4. link the basic\_vimrc to your own vimrc:
 
     ~~~sh
-    cd dotfiles/
-    ./create_symlinks.sh
-    ~~~
+    ln -s dotfiles/vim/basic_vimrc ~/.vimrc
+    ~~~~
 
-4. launch vundle to install all plugins:
+
+5. launch vundle to install all plugins:
 
     ~~~sh
     vim +PluginInstall +qall

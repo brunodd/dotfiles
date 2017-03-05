@@ -1,0 +1,10 @@
+# Basic mappings
+alias k='tree'
+alias ltr='ls -ltr'
+alias r='screen -D -R'
+alias l='ls -lh'
+alias ll='ls -la'
+alias c='clear'
+# Use gcc instead of Clang when calling gcc
+alias gcc='gcc-6'
+alias g++='g++-6'
