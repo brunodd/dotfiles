@@ -14,6 +14,27 @@ Plugin 'scrooloose/nerdtree'
   nmap <C-b> :NERDTreeToggle<Cr>
 " Easy comments
 Plugin 'tComment'
+" Easy switch between files
+Plugin 'kien/ctrlp.vim'
+" ctrlP settings
+let g:ctrlp_map = '<c-p>'
+" Snippets engine
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Extra snippets (containing blade snippets)
+Plugin 'hlissner/vim-ultisnips-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Plugin 'johnhamelink/blade.vim'
+" Plugin 'jwalton512/vim-blade'
+" Plugin 'xsbeats/vim-blade'
+Plugin 'VuogNguyen/vim-blade'
+
 call vundle#end()
 
 " Turn on syntax highlighting
@@ -44,11 +65,13 @@ set encoding=utf-8
 set wrap
 set textwidth=79
 set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set noshiftround
+set smarttab
+set autoindent                              " indent when moving to the next line while writing code
+set smartindent
 
 " Cursor motion
 set scrolloff=3
@@ -59,6 +82,13 @@ runtime! macros/matchit.vim
 " Move up/down editor lines
 nnoremap j gj
 nnoremap k gk
+
+" Easily redo something.
+nnoremap r :redo<CR>
+
+" Clear search highlists by pressing ENTER
+nnoremap <CR> :noh<CR>
+
 
 " Allow hidden buffers
 set hidden
@@ -88,6 +118,10 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
 
+" This allows easy indentation in visual mode.
+vmap > >gv
+vmap < <gv
+
 " Textmate holdouts
 
 " Formatting
@@ -110,12 +144,9 @@ let g:solarized_termtrans=1
 " colorscheme solarized
 
 " Sets a font for the GUI
-if has("gui_gtk2")
-  set guifont=Consolas\ For\ Powerline\ 11
-elseif has("gui_macvim")
-  " My Mac has a fairly high DPI so the font needs to be bigger
-  set guifont=Source\ Code\ Pro:h13
-elseif has("gui_win32")
-  set guifont=Consolas\ For\ Powerline:h11
-end
+set guifont=Lucida_Console:h14
+set linespace=12
 
+" Filetype specifics
+autocmd BufNewFile,BufRead *.php set ft=html | set ft=php | set tw=0
+autocmd BufNewFile,BufRead *.blade.php set ft=blade.html.php | set tw=0
