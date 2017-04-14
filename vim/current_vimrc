@@ -35,6 +35,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Plugin 'xsbeats/vim-blade'
 Plugin 'VuogNguyen/vim-blade'
 
+" Auto-close braces, accents, ...
+Plugin 'jiangmiao/auto-pairs'
+
 call vundle#end()
 
 " Turn on syntax highlighting
@@ -150,3 +153,7 @@ set linespace=12
 " Filetype specifics
 autocmd BufNewFile,BufRead *.php set ft=html | set ft=php | set tw=0
 autocmd BufNewFile,BufRead *.blade.php set ft=blade.html.php | set tw=0
+
+" Collect swapfiles in single location
+set backupdir=~/.vim/backup/
+set directory=~/.vim/backup/
