@@ -42,6 +42,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'powerline/fonts'
 " Add useful statusbar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'itchyny/lightline.vim'
 call vundle#end()
 
 " For plugins to load correctly
