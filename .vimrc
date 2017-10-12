@@ -4,6 +4,7 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
+" Plugins {{{
 " Plugins using Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -14,7 +15,6 @@ Plugin 'lervag/vimtex'
 
 " Snippets
 Plugin 'ervandew/supertab'
-" Plugin 'Valloric/YouCompleteMe'
 Plugin 'Shougo/neocomplete'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'SirVer/ultisnips'
@@ -30,8 +30,8 @@ Plugin 'tComment'
 " Colorschemes
 Plugin 'flazz/vim-colorschemes'
 
-" Fix python folds
-Plugin 'tmhedberg/SimpylFold'
+" " Fix python folds
+" Plugin 'tmhedberg/SimpylFold'
 " Fix python autoindents
 Plugin 'vim-scripts/indentpython.vim'
 " Syntax checker
@@ -46,8 +46,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 call vundle#end()
 
-" Make python code prettier
-let python_highlight_all=1
+" }}}
+
 " Turn on syntax highlighting
 syntax on
 
@@ -55,7 +55,7 @@ syntax on
 filetype plugin indent on
 
 " " Pick a leader key
-let mapleader = " "
+let mapleader = ","
 
 
 " set foldmethod=marker
@@ -64,9 +64,6 @@ set foldmethod=indent
 set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
-
-" Security
-set modelines=0
 
 " Show line numbers
 set number
@@ -92,6 +89,7 @@ set noshiftround
 set smarttab
 set autoindent                              " indent when moving to the next line while writing code
 set smartindent
+set modelines=1
 
 " Cursor motion
 set scrolloff=3
@@ -153,7 +151,9 @@ set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
-colorscheme solarized
+colorscheme badwolf
+set termguicolors
+" colorscheme solarized
 
 " Font
 " Sets a font for the GUI
@@ -185,8 +185,30 @@ set directory=~/.vim/swap//
 set wildmode=longest,list,full
 set wildmenu
 
+
+
+
+
+" Remappings {{{
+
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+" }}}
+
+" PluginSettings {{{
+
+" JediVim {{{
+
+autocmd FileType python setlocal completeopt-=preview
+" }}}
+
+" UltiSnips {{{
+
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+" }}}
+" SuperTab {{{
 
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab (via http://stackoverflow.com/a/22253548/1626737)
 let g:SuperTabDefaultCompletionType    = '<C-n>'
@@ -194,20 +216,33 @@ let g:SuperTabCrMapping                = 0
 let g:UltiSnipsExpandTrigger           = '<tab>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-" let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-"
-" let g:ycm_autoclose_preview_window_after_completion=1
-" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+" }}}
+" NeoComplete {{{
 
 " Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" }}}
+" }}}
+" Commented {{{
+" " Make python code prettier
+" let python_highlight_all=1
+" }}}
 
+" vim:foldmethod=marker:foldlevel=0
