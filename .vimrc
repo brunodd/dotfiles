@@ -16,7 +16,7 @@ Plugin 'lervag/vimtex'
 Plugin 'ervandew/supertab'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'Shougo/neocomplete'
-Plugin 'zchee/deoplete-jedi'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'SirVer/ultisnips'
 
 " Filestructure tree
