@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# completion
 autoload -U compinit
 compinit
 
@@ -24,4 +23,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Set path
-export PATH=/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
