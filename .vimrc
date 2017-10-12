@@ -39,10 +39,10 @@ Plugin 'nvie/vim-flake8'
 " Ctrl-P plugin
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'powerline/fonts'
 " Add useful statusbar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 call vundle#end()
-
 
 " For plugins to load correctly
 filetype plugin indent on
