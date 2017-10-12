@@ -1,0 +1,30 @@
+snippet main "if name == main"
+if __name__ == '__main__':
+	$0
+endsnippet
+
+snippet cl "class"
+class ${1:CLASSNAME}:
+	$0
+endsnippet
+
+snippet def "function with dynamic docblock" b
+def ${1:function_name}(${2:function_args}):
+`!p
+# Currently Ultisnips does not support dynamic tabstops, so we cannot add
+# tabstops to the datatype for these param tags until that feature is added.
+def formatTag(argument):
+	return '\t" @p {0}'.format(argument)
+
+arguments = t[2].split(',')
+arguments = [argument.strip() for argument in arguments if argument]
+
+if len(arguments):
+	tags = map(formatTag, arguments)
+	snip.rv = '\t"""'
+	for tag in tags:
+		snip += tag
+	snip += '\t"""'
+`
+	${0:function_body}
+endsnippet
