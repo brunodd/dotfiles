@@ -8,7 +8,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Latex support
-Plugin 'lervag/vimtex'
+Plugin 'gerw/vim-latex-suite'
 
 " Snippets
 Plugin 'ervandew/supertab'
@@ -122,7 +122,6 @@ set linespace=12
 " }}}
 " Filetype specifics {{{
 autocmd BufNewFile,BufRead *.php set ft=html | set ft=php | set tw=0
-autocmd BufNewFile,BufRead *.tex set ft=latex
 autocmd Filetype python
     \ set tabstop=4 |
     \ set softtabstop=4 |
