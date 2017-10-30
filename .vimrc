@@ -8,8 +8,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Latex support
-Plugin 'gerw/vim-latex-suite'
-
+" Plugin 'gerw/vim-latex-suite'
+Plugin 'lervag/vimtex'
 " Snippets
 Plugin 'ervandew/supertab'
 Plugin 'Shougo/neocomplete'
@@ -18,8 +18,6 @@ Plugin 'SirVer/ultisnips'
 
 " Filestructure tree
 Plugin 'scrooloose/nerdtree'
-" NERDTree settings
-  nmap <C-b> :NERDTreeToggle<Cr>
 
 " Easy comments
 Plugin 'tComment'
@@ -30,7 +28,7 @@ Plugin 'flazz/vim-colorschemes'
 " " Fix python folds
 " Plugin 'tmhedberg/SimpylFold'
 " Fix python autoindents
-Plugin 'vim-scripts/indentpython.vim'
+" Plugin 'vim-scripts/indentpython.vim'
 " Syntax checker
 Plugin 'scrooloose/syntastic'
 " Check PEP-8
@@ -47,12 +45,6 @@ call vundle#end()
 
 " For plugins to load correctly
 filetype plugin indent on
-" }}}
-" Folding {{{
-set foldmethod=indent
-set foldlevel=99
-" Enable folding with the spacebar
-nnoremap <space> za
 " }}}
 " Spaces and tabs {{{
 set wrap
@@ -124,9 +116,9 @@ set linespace=12
 " Filetype specifics {{{
 autocmd BufNewFile,BufRead *.php set ft=html | set ft=php | set tw=0
 autocmd Filetype python
-    \ set tabstop=8 |
-    \ set softtabstop=8 |
-    \ set shiftwidth=8 |
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
@@ -160,6 +152,11 @@ nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " }}}
 " PluginSettings {{{
+" LatexSuite {{{
+" let Tex_FoldedSections=""
+" let Tex_FoldedEnvironments=""
+" let Tex_FoldedMisc=""
+" }}}
 " JediVim {{{
 autocmd FileType python setlocal completeopt-=preview
 " }}}
@@ -196,10 +193,23 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " }}}
+" NERDTree {{{
+nmap <C-b> :NERDTreeToggle<Cr>
+let NERDTreeIgnore=['.aux$']
+" }}}
 " }}}
 " Commented {{{
 " " Make python code prettier
 " let python_highlight_all=1
+" }}}
+" Folding {{{
+set foldenable
+set foldmethod=indent
+set foldlevel=10
+set foldlevelstart=10
+set foldnestmax=10
+" Enable folding with the spacebar
+nnoremap <space> za
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
