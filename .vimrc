@@ -42,7 +42,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'powerline/fonts'
 " Add useful statusbar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'jiangmiao/auto-pairs'
 call vundle#end()
 
 " For plugins to load correctly
@@ -125,9 +124,9 @@ set linespace=12
 autocmd BufNewFile,BufRead *.php set ft=html | set ft=php | set tw=0
 autocmd BufNewFile,BufRead *.tex set ft=latex
 autocmd Filetype python
-    \ set tabstop=8 |
-    \ set softtabstop=8 |
-    \ set shiftwidth=8 |
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
@@ -159,6 +158,8 @@ vmap < <gv
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+nmap ZZ :w<CR><C-Z><CR>
 " }}}
 " PluginSettings {{{
 " JediVim {{{
