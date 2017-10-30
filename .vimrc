@@ -40,7 +40,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'powerline/fonts'
 " Add useful statusbar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'jiangmiao/auto-pairs'
 call vundle#end()
 
 " For plugins to load correctly
@@ -150,6 +149,8 @@ vmap < <gv
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+nmap ZZ :w<CR><C-Z><CR>
 " }}}
 " PluginSettings {{{
 " LatexSuite {{{
